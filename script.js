@@ -34,6 +34,12 @@ let fadeGain;
 let fadeTimeout;
 let shouldResumeAfterHide = false;
 const statusEl = document.getElementById("status-text");
+const sliderValueEls = {
+  brightness: document.getElementById("brightness-value"),
+  tone: document.getElementById("tone-value"),
+  stereo: document.getElementById("stereo-value"),
+  volume: document.getElementById("volume-value"),
+};
 const sourceSlots = Array.from({ length: 2 }, () => ({
   source: null,
   gain: null,
@@ -93,6 +99,7 @@ function initializeControls() {
 
   if (volumeSlider) {
     volumeSlider.setAttribute("aria-valuenow", volumeSlider.value);
+    updateSliderValueDisplay("volume", Number(volumeSlider.value));
   }
 
   updateNoiseButtons();
@@ -103,6 +110,7 @@ function initializeControls() {
   if (volumeSlider) {
     volumeSlider.addEventListener("input", () => {
       volumeSlider.setAttribute("aria-valuenow", volumeSlider.value);
+      updateSliderValueDisplay("volume", Number(volumeSlider.value));
       updateVolume();
       persistSettings();
     });
@@ -467,12 +475,21 @@ function createBrownNoiseBuffer(context) {
 function attachSlider(slider, key, applyFn) {
   if (!slider) return;
   slider.setAttribute("aria-valuenow", slider.value);
+  updateSliderValueDisplay(key, Number(slider.value));
   slider.addEventListener("input", () => {
     state.controlValues[key] = Number(slider.value);
     slider.setAttribute("aria-valuenow", slider.value);
+    updateSliderValueDisplay(key, Number(slider.value));
     applyFn();
     persistSettings();
   });
+}
+
+function updateSliderValueDisplay(key, value) {
+  const target = sliderValueEls[key];
+  if (target) {
+    target.textContent = `${value}%`;
+  }
 }
 
 noiseButtons.forEach((button) => {
