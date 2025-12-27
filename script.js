@@ -31,11 +31,14 @@ let panLfo;
 let panDepthGain;
 let gainNode;
 let fadeGain;
-let currentSource;
-let currentSourceGain;
 let fadeTimeout;
 let shouldResumeAfterHide = false;
 const statusEl = document.getElementById("status-text");
+const sourceSlots = Array.from({ length: 2 }, () => ({
+  source: null,
+  gain: null,
+}));
+let activeSlotIndex = -1;
 
 const state = {
   isPlaying: false,
@@ -288,35 +291,43 @@ async function startNoise(options = {}) {
     return;
   }
 
-  const previousSource = currentSource;
-  const previousGain = currentSourceGain;
   const wasPlaying = state.isPlaying;
+  const previousSlot =
+    activeSlotIndex >= 0 ? sourceSlots[activeSlotIndex] : null;
+  if (!crossfade && previousSlot?.source) {
+    stopSlot(previousSlot);
+  }
 
-  if (!crossfade && previousSource) {
-    stopNoise({ immediate: true });
+  const nextIndex = (activeSlotIndex + 1) % sourceSlots.length;
+  const slot = sourceSlots[nextIndex];
+  if (!slot.gain) {
+    slot.gain = audioCtx.createGain();
+    slot.gain.connect(toneFilter);
   }
 
   const source = audioCtx.createBufferSource();
   source.buffer = getNoiseBuffer(state.currentNoise);
   source.loop = true;
-
-  const sourceGain = audioCtx.createGain();
-  sourceGain.gain.value = crossfade && wasPlaying ? 0 : 1;
-  source.connect(sourceGain).connect(toneFilter);
+  slot.source = source;
+  const startGain = crossfade && wasPlaying ? 0 : 1;
+  slot.gain.gain.setValueAtTime(startGain, audioCtx.currentTime);
+  source.connect(slot.gain);
   source.start();
 
-  if (crossfade && wasPlaying && previousSource && previousGain) {
+  if (crossfade && wasPlaying && previousSlot?.source && previousSlot.gain) {
     const now = audioCtx.currentTime;
     const cfDuration = Math.min(getFadeDuration(), 0.4);
-    sourceGain.gain.linearRampToValueAtTime(1, now + cfDuration);
-    previousGain.gain.cancelScheduledValues(now);
-    previousGain.gain.setValueAtTime(previousGain.gain.value, now);
-    previousGain.gain.linearRampToValueAtTime(0, now + cfDuration);
-    previousSource.stop(now + cfDuration + 0.05);
+    slot.gain.gain.linearRampToValueAtTime(1, now + cfDuration);
+    previousSlot.gain.gain.cancelScheduledValues(now);
+    previousSlot.gain.gain.setValueAtTime(
+      previousSlot.gain.gain.value,
+      now
+    );
+    previousSlot.gain.gain.linearRampToValueAtTime(0, now + cfDuration);
+    stopSlot(previousSlot, now + cfDuration + 0.05);
   }
 
-  currentSource = source;
-  currentSourceGain = sourceGain;
+  activeSlotIndex = nextIndex;
 
   if (!wasPlaying) {
     const now = audioCtx.currentTime;
@@ -346,21 +357,13 @@ function stopNoise({ immediate = false } = {}) {
   fadeGain.gain.linearRampToValueAtTime(0, now + fadeDur);
 
   const finalize = () => {
-    if (currentSource) {
-      try {
-        currentSource.stop();
-      } catch {
-        // ignored
-      }
-      currentSource.disconnect();
-    currentSource = null;
-  }
-  currentSourceGain = null;
-  state.isPlaying = false;
-  playToggle.textContent = "Play";
-  persistSettings();
-  playToggle.setAttribute("aria-pressed", "false");
-  announceStatus("Noise playback paused.");
+    sourceSlots.forEach((slot) => stopSlot(slot));
+    activeSlotIndex = -1;
+    state.isPlaying = false;
+    playToggle.textContent = "Play";
+    persistSettings();
+    playToggle.setAttribute("aria-pressed", "false");
+    announceStatus("Noise playback paused.");
 };
 
   if (immediate) {
@@ -374,6 +377,26 @@ function stopNoise({ immediate = false } = {}) {
 function announceStatus(message) {
   if (statusEl) {
     statusEl.textContent = message;
+  }
+}
+
+function stopSlot(slot, stopTime) {
+  if (!slot) return;
+  if (slot.source) {
+    try {
+      if (typeof stopTime === "number") {
+        slot.source.stop(stopTime);
+      } else {
+        slot.source.stop();
+      }
+    } catch {
+      // ignore
+    }
+    slot.source.disconnect();
+    slot.source = null;
+  }
+  if (slot.gain && audioCtx) {
+    slot.gain.gain.setValueAtTime(0, audioCtx.currentTime);
   }
 }
 
