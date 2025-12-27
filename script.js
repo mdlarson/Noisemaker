@@ -32,7 +32,6 @@ let panDepthGain;
 let gainNode;
 let fadeGain;
 let fadeTimeout;
-let shouldResumeAfterHide = false;
 const statusEl = document.getElementById("status-text");
 const sliderValueEls = {
   brightness: document.getElementById("brightness-value"),
@@ -521,15 +520,3 @@ playToggle.addEventListener(
 initializeControls();
 applyAllSettings();
 updateVolume();
-
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) {
-    shouldResumeAfterHide = state.isPlaying;
-    if (state.isPlaying) {
-      stopNoise();
-    }
-  } else if (shouldResumeAfterHide) {
-    shouldResumeAfterHide = false;
-    startNoise();
-  }
-});
