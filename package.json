@@ -1,0 +1,32 @@
+{
+  "name": "noise-studio",
+  "version": "1.0.0",
+  "private": true,
+  "main": "main.js",
+  "devDependencies": {
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
+  },
+  "build": {
+    "appId": "local.noisestudio.app",
+    "productName": "Noise Studio",
+    "mac": {
+      "target": [
+        "dmg"
+      ]
+    },
+    "files": [
+      "main.js",
+      "index.html",
+      "script.js",
+      "style.css",
+      "favicon.svg",
+      "assets/**"
+    ]
+  }
+}
