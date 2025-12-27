@@ -1,0 +1,207 @@
+:root {
+  color-scheme: light dark;
+  font-family: "Space Grotesk", "Inter", system-ui, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  --bg: #0f1115;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-light: rgba(0, 0, 0, 0.05);
+  --text: #f5f7fb;
+  --muted: #9ba6c1;
+  --accent: #c98c52;
+  --accent-strong: #b6763e;
+  --accent-soft: rgba(201, 140, 82, 0.22);
+  --border: rgba(255, 255, 255, 0.12);
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ebeff6;
+    --card: rgba(255, 255, 255, 0.85);
+    --card-light: rgba(255, 255, 255, 0.95);
+    --text: #0f172a;
+    --muted: #475569;
+    --accent-soft: rgba(201, 140, 82, 0.18);
+    --border: rgba(15, 23, 42, 0.08);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 2.5rem 1rem 4rem;
+}
+
+.app {
+  width: min(960px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.7rem);
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.slider-label,
+.section-label {
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.section-label {
+  margin: 0 0 0.3rem;
+  font-size: 1rem;
+}
+
+.card {
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.18);
+}
+
+.card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.noise-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+.slider-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.action-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+button {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, transform 120ms ease;
+}
+
+button:hover,
+.noise-button[aria-pressed="true"]:hover {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+  width: 100%;
+  padding: 0.9rem 1.4rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.secondary {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.noise-button {
+  flex: 1 1 calc(33.333% - 0.5rem);
+  text-align: center;
+  color: var(--accent);
+  border-color: rgba(201, 140, 82, 0.35);
+}
+
+.noise-button[aria-pressed="true"],
+.primary:hover,
+.primary:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent-strong);
+  color: #1b0f07;
+}
+
+@media (max-width: 640px) {
+  .noise-buttons {
+    flex-direction: column;
+  }
+}
+
+.slider-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--card-light));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff7ee, var(--accent));
+  border: none;
+  box-shadow: 0 6px 12px rgba(185, 111, 54, 0.45);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+}
+
+input[type="range"]::-moz-range-track {
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent-soft), var(--card-light));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hint {
+  color: var(--muted);
+  margin-top: 0.25rem;
+}

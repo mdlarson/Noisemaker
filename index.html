@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noise Studio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Noise Studio</h1>
+      </header>
+
+      <section class="card">
+        <p class="section-label">Color</p>
+        <div class="noise-buttons" role="group" aria-label="Noise color selector">
+          <button class="noise-button" data-noise="white" aria-pressed="false">
+            White
+          </button>
+          <button class="noise-button" data-noise="pink" aria-pressed="true">
+            Pink
+          </button>
+          <button class="noise-button" data-noise="brown" aria-pressed="false">
+            Brown
+          </button>
+        </div>
+      </section>
+
+      <section class="card slider-card">
+        <label class="slider-label">
+          Brightness
+          <input
+            id="brightness-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="25"
+          />
+        </label>
+        <p class="hint" id="brightness-hint">Bright boosts shimmer; Dark softens the hiss.</p>
+      </section>
+
+      <section class="card slider-card">
+        <label class="slider-label">
+          Tone Tilt
+          <input
+            id="tone-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="25"
+          />
+        </label>
+        <p class="hint" id="tone-hint">Warm bias pulls lows forward; crisp bias adds clarity.</p>
+      </section>
+
+      <section class="card slider-card">
+        <label class="slider-label">
+          Stereo Drift
+          <input
+            id="stereo-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="25"
+          />
+        </label>
+        <p class="hint" id="stereo-hint">Adds slow autopan to widen the field in headphones.</p>
+      </section>
+
+      <section class="card slider-card">
+        <label class="slider-label">
+          Volume
+          <input
+            id="volume-slider"
+            type="range"
+            min="0"
+            max="100"
+            value="25"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="25"
+          />
+        </label>
+      </section>
+
+      <section class="card action-card">
+        <button id="play-toggle" class="primary">Play</button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
