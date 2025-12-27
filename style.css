@@ -163,12 +163,10 @@ button:focus-visible {
   }
 }
 
-.slider-label {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+.slider-card input[type="range"] {
+  margin-top: 0.35rem;
+  display: block;
 }
-
 input[type="range"] {
   width: 100%;
   appearance: none;
@@ -208,4 +206,16 @@ input[type="range"]::-moz-range-track {
 .hint {
   color: var(--muted);
   margin-top: 0.25rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

@@ -35,6 +35,7 @@ let currentSource;
 let currentSourceGain;
 let fadeTimeout;
 let shouldResumeAfterHide = false;
+const statusEl = document.getElementById("status-text");
 
 const state = {
   isPlaying: false,
@@ -238,6 +239,7 @@ function updateNoiseButtons() {
     const isActive = btn.dataset.noise === state.currentNoise;
     btn.setAttribute("aria-pressed", String(isActive));
   });
+  announceStatus(`Noise color set to ${state.currentNoise}.`);
 }
 
 function setNoiseType(type) {
@@ -327,6 +329,8 @@ async function startNoise(options = {}) {
   state.isPlaying = true;
   playToggle.textContent = "Pause";
   persistSettings();
+  playToggle.setAttribute("aria-pressed", "true");
+  announceStatus("Noise playback started.");
 }
 
 function stopNoise({ immediate = false } = {}) {
@@ -349,19 +353,27 @@ function stopNoise({ immediate = false } = {}) {
         // ignored
       }
       currentSource.disconnect();
-      currentSource = null;
-    }
-    currentSourceGain = null;
-    state.isPlaying = false;
-    playToggle.textContent = "Play";
-    persistSettings();
-  };
+    currentSource = null;
+  }
+  currentSourceGain = null;
+  state.isPlaying = false;
+  playToggle.textContent = "Play";
+  persistSettings();
+  playToggle.setAttribute("aria-pressed", "false");
+  announceStatus("Noise playback paused.");
+};
 
   if (immediate) {
     finalize();
   } else {
     if (fadeTimeout) clearTimeout(fadeTimeout);
     fadeTimeout = setTimeout(finalize, fadeDur * 1000 + 20);
+  }
+}
+
+function announceStatus(message) {
+  if (statusEl) {
+    statusEl.textContent = message;
   }
 }
 
