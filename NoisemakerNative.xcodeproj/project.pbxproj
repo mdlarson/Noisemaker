@@ -1,0 +1,335 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* NoisemakerNativeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000101 /* NoisemakerNativeApp.swift */; };
+		A10000000000000000000002 /* NoiseEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000102 /* NoiseEngine.swift */; };
+		A10000000000000000000003 /* NoiseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000103 /* NoiseSettings.swift */; };
+		A10000000000000000000004 /* NoiseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000104 /* NoiseType.swift */; };
+		A10000000000000000000005 /* NoiseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000105 /* NoiseViewModel.swift */; };
+		A10000000000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000106 /* ContentView.swift */; };
+		A10000000000000000000007 /* NoiseControlCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000107 /* NoiseControlCard.swift */; };
+		A10000000000000000000008 /* NoiseSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000109 /* NoiseSlider.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000101 /* NoisemakerNativeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoisemakerNativeApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000102 /* NoiseEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseEngine.swift; sourceTree = "<group>"; };
+		A10000000000000000000103 /* NoiseSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSettings.swift; sourceTree = "<group>"; };
+		A10000000000000000000104 /* NoiseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseType.swift; sourceTree = "<group>"; };
+		A10000000000000000000105 /* NoiseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseViewModel.swift; sourceTree = "<group>"; };
+		A10000000000000000000106 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A10000000000000000000107 /* NoiseControlCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseControlCard.swift; sourceTree = "<group>"; };
+		A10000000000000000000109 /* NoiseSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoiseSlider.swift; sourceTree = "<group>"; };
+		A10000000000000000000108 /* NoisemakerNative.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoisemakerNative.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000201 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000301 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000302 /* Sources */,
+				A10000000000000000000303 /* Products */,
+				A10000000000000000000308 /* Package.swift */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000000000000000000302 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000304 /* App */,
+				A10000000000000000000305 /* Audio */,
+				A10000000000000000000306 /* Models */,
+				A10000000000000000000307 /* ViewModels */,
+				A10000000000000000000309 /* Views */,
+			);
+			path = Sources/NoisemakerNative;
+			sourceTree = SOURCE_ROOT;
+		};
+		A10000000000000000000303 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000108 /* NoisemakerNative.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000304 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000101 /* NoisemakerNativeApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000305 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000102 /* NoiseEngine.swift */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000306 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000103 /* NoiseSettings.swift */,
+				A10000000000000000000104 /* NoiseType.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000307 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000105 /* NoiseViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000308 /* Package.swift */ = {
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.swift;
+			path = Package.swift;
+			sourceTree = SOURCE_ROOT;
+		};
+		A10000000000000000000309 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000106 /* ContentView.swift */,
+				A10000000000000000000107 /* NoiseControlCard.swift */,
+				A10000000000000000000109 /* NoiseSlider.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000401 /* NoisemakerNative */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000601 /* Build configuration list for PBXNativeTarget "NoisemakerNative" */;
+			buildPhases = (
+				A10000000000000000000202 /* Sources */,
+				A10000000000000000000201 /* Frameworks */,
+				A10000000000000000000203 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NoisemakerNative;
+			productName = NoisemakerNative;
+			productReference = A10000000000000000000108 /* NoisemakerNative.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000501 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2640;
+				LastUpgradeCheck = 2640;
+				TargetAttributes = {
+					A10000000000000000000401 = {
+						CreatedOnToolsVersion = 26.4;
+					};
+				};
+			};
+			buildConfigurationList = A10000000000000000000604 /* Build configuration list for PBXProject "NoisemakerNative" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000000000000000000301;
+			productRefGroup = A10000000000000000000303 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000000401 /* NoisemakerNative */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000203 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000202 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* NoisemakerNativeApp.swift in Sources */,
+				A10000000000000000000002 /* NoiseEngine.swift in Sources */,
+				A10000000000000000000003 /* NoiseSettings.swift in Sources */,
+				A10000000000000000000004 /* NoiseType.swift in Sources */,
+				A10000000000000000000005 /* NoiseViewModel.swift in Sources */,
+				A10000000000000000000006 /* ContentView.swift in Sources */,
+				A10000000000000000000007 /* NoiseControlCard.swift in Sources */,
+				A10000000000000000000008 /* NoiseSlider.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A10000000000000000000602 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A10000000000000000000603 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A10000000000000000000605 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Noise Studio";
+				INFOPLIST_KEY_CFBundleName = "Noise Studio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.noisemaker.native;
+				PRODUCT_NAME = "Noise Studio";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A10000000000000000000606 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Noise Studio";
+				INFOPLIST_KEY_CFBundleName = "Noise Studio";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = local.noisemaker.native;
+				PRODUCT_NAME = "Noise Studio";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000601 /* Build configuration list for PBXNativeTarget "NoisemakerNative" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000605 /* Debug */,
+				A10000000000000000000606 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000604 /* Build configuration list for PBXProject "NoisemakerNative" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000000000000000000602 /* Debug */,
+				A10000000000000000000603 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000501 /* Project object */;
+}
