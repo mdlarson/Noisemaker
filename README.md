@@ -1,91 +1,70 @@
 # Noise Studio
 
-A simple local noise generator (white / pink / brown) with controls for brightness, tone tilt, stereo drift, and volume.
+Noise Studio is a native macOS ambient noise app built with SwiftUI and AVFoundation.
 
-This repo can be used in two ways:
-
-1) As a lightweight local web app (served over HTTP).
-2) As a self-contained macOS desktop app (`.app` / `.dmg`) via Electron (no App Store required).
+It replaces the original Electron/web version of Noisemaker with a lightweight desktop app that generates white, pink, and brown noise in-process using `AVAudioSourceNode`.
 
 ## Features
 
-- White / Pink / Brown noise
-- Brightness, Tone Tilt, Stereo Drift, and Volume controls
-- Persists settings in `localStorage` (your preferred mix loads on refresh)
+- White, pink, and brown noise
+- Brightness, tone tilt, stereo drift, and volume controls
+- Smooth play/pause fades
+- Fast color crossfades
+- Local settings persistence with `UserDefaults`
+- Universal macOS build support for Apple Silicon and Intel Macs
 
-## Option A: Run as a local web app (no build step)
+## Requirements
 
-1) Clone the repo:
+- macOS 14 or later
+- Xcode 26 or later
+
+## Run In Xcode
+
+1. Open `NoisemakerNative.xcodeproj`.
+2. Select the `NoisemakerNative` scheme.
+3. Select `My Mac`.
+4. Press `Cmd-R`.
+
+## Package A Release Build
+
+Use the included packaging script:
+
 ```bash
-git clone https://github.com/mdlarson/Noisemaker.git
-cd Noisemaker
-````
-
-2. Start a simple static file server:
-
-```bash
-python3 -m http.server 8080
+cd path/to/Noisemaker
+./scripts/package-macos.sh
 ```
 
-3. Open in your browser:
+That produces:
 
-* [http://localhost:8080/](http://localhost:8080/)
+- `dist/Noise Studio.app`
+- `dist/Noise-Studio-macOS.zip`
 
-Notes:
+The script builds a universal Release app for both `arm64` and `x86_64`.
 
-* Many browsers require a user gesture (click) before audio starts; click **Play** to begin.
+## Install On Your Macs
 
-## Option B: Build a macOS desktop app (.app / .dmg) with Electron
+1. Copy `dist/Noise-Studio-macOS.zip` to the target Mac.
+2. Unzip it.
+3. Move `Noise Studio.app` into `/Applications`.
+4. Launch it.
 
-This produces a distributable `.dmg` you can copy to other Macs you own.
-
-### Prerequisites
-
-* Node.js (recommended install via Homebrew):
-
-```bash
-brew install node
-```
-
-### Install dependencies
-
-From the repo root:
+If macOS blocks the first launch on another machine, either right-click the app and choose `Open`, or run:
 
 ```bash
-npm install
+xattr -dr com.apple.quarantine "/Applications/Noise Studio.app"
 ```
 
-### Run locally (Dev)
+## Project Layout
 
-```bash
-npm start
-```
+- `Sources/NoisemakerNative/App`: app entry and window setup
+- `Sources/NoisemakerNative/Audio`: noise generation and DSP
+- `Sources/NoisemakerNative/Models`: persisted settings and noise types
+- `Sources/NoisemakerNative/ViewModels`: app state and persistence
+- `Sources/NoisemakerNative/Views`: SwiftUI interface
+- `scripts/package-macos.sh`: universal release packaging
 
-### Build a DMG
+## Notes
 
-```bash
-npm run dist
-```
-
-Outputs are written to `dist/` (for example: a `.dmg` and a `mac-arm64/` app folder).
-
-### `dist` vs `pack`
-
-* `npm run pack` builds the app into an unpacked directory (useful for quick local testing).
-* `npm run dist` builds distributable artifacts (e.g., `.dmg`) for copying to other machines.
-
-### Gatekeeper note (unsigned app)
-
-If you are not code-signing, macOS may warn when opening the app on a machine for the first time.
-Typical workaround: Finder → right-click the app → **Open** (one-time per machine), or use **Privacy & Security** → **Open Anyway**.
-
-### Customizing desktop window size
-
-The Electron window defaults are defined in `main.js`:
-
-* `width` / `height` set the initial window size
-* `minHeight` (optional) sets a minimum
-* `resizable` controls whether the user can resize
-* `useContentSize: true` applies sizing to the web content area
-
-After changing `main.js`, rebuild with `npm run dist` to update the packaged app.
+- The current packaging flow is intended for personal distribution across your own Macs.
+- The app is not notarized or App Store packaged.
+- For frictionless first-launch installs on any Mac, the next step would be Developer ID signing and notarization.
